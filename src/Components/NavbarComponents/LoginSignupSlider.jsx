@@ -21,6 +21,7 @@ import {
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { registerAuthUser } from "../../Redux/Auth/action";
+import { LoginIndivisualSlider } from "./LoginIndivisualSlider";
 import { LoginSLider } from "./LoginSlider";
 
 export function LoginSignupSlider() {
@@ -246,6 +247,10 @@ export function LoginSignupSlider() {
                 Privacy Policy
               </span>
             </Text>
+            <Flex align="center" justify='center'>
+              <Text fontSize='13px' pr='10px'>Already registered?</Text>
+            <LoginIndivisualSlider color={'#159a94'} font={'13px'}/>
+            </Flex>
           </DrawerBody>
         </DrawerContent>
       </Drawer>

@@ -261,7 +261,7 @@ const isAuth=useSelector((store)=>store.auth.isAuth)
                     <Flex>
                       <Image src="https://assets.pharmeasy.in/web-assets/dist/5eb42971.svg" />
                       {/* {isAuth &&} */}
-                      <LoginIndivisualSlider />
+                      <LoginIndivisualSlider font={'16px'} color={'#fff'} />
                       {/* <LoginSLider/> */}
                     </Flex>
                     <Link to="/cart">

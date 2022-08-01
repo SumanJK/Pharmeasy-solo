@@ -25,7 +25,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginAuthUser, registerAuthUser } from "../../Redux/Auth/action";
 
-export function LoginIndivisualSlider({ handleRegister }) {
+export function LoginIndivisualSlider({ handleRegister, color, font }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const firstField = React.useRef();
 
@@ -76,8 +76,8 @@ export function LoginIndivisualSlider({ handleRegister }) {
     <div>
       {/* <Button leftIcon={<AddIcon />} colorScheme='teal' onClick={onOpen}> */}
       <Center>
-        <Text fontWeight="700" color={"white"} onClick={() => onOpen()}>
-          LOGIN
+        <Text fontWeight="500" color={color} fontSize={font} onClick={() => onOpen()} cursor="pointer">
+          Login
         </Text>
       </Center>
       {/* </Button> */}
