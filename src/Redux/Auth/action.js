@@ -34,7 +34,7 @@ export const registerAuthFailure=()=>{
     }
 }
 
-export const registerAuthUser= (userData)=>(dispatch,getState)=>{
+export const registerAuthUser= (userData,toast)=>(dispatch,getState)=>{
 
     dispatch(registerAuthRequest())
     axios({
@@ -44,8 +44,21 @@ export const registerAuthUser= (userData)=>(dispatch,getState)=>{
     }).then((res)=>{
 
         dispatch(registerAuthSuccess())
+
+        toast({
+            title: 'User registered successfully',
+            status: "success",
+            duration: 5000,
+            isClosable: true,
+          });
     }).catch((err)=>{
         dispatch(registerAuthFailure())
+        toast({
+            title: 'Our server is slow please try again later!',
+            status: "error",
+            duration: 4000,
+            isClosable: true,
+          });
     })
 }
 export const loginAuthRequest=()=>{
@@ -65,7 +78,7 @@ export const loginAuthFailure=()=>{
     }
 }
 
-export const loginAuthUser= (userData)=>(dispatch,getState)=>{
+export const loginAuthUser= (userData,toast)=>(dispatch,getState)=>{
 
     dispatch(loginAuthRequest())
     axios({
@@ -73,12 +86,19 @@ export const loginAuthUser= (userData)=>(dispatch,getState)=>{
         method:"POST",
         data: userData
     }).then((res)=>{
-        console.log(res.data.user,"userdt")
+        console.log(res,"userdt login")
         dispatch(loginAuthSuccess(res.data.user))
+        toast({
+            title: `${res.data.message}`,
+            status: "success",
+            duration: 5000,
+            isClosable: true,
+          });
     }).then((res)=>{
     dispatch(getCartItems(res.data.user._id)) })
     .catch((err)=>{
         dispatch(loginAuthFailure())
+       
     })
 }
 //GET Actions

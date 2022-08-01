@@ -16,15 +16,16 @@ import {
   Image,
   InputRightElement,
   InputGroup,
-  FormHelperText,
-  FormErrorMessage,
+  useToast,
 } from "@chakra-ui/react";
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { registerAuthUser } from "../../Redux/Auth/action";
 import { LoginSLider } from "./LoginSlider";
 
 export function LoginSignupSlider() {
+
+  const toast= useToast();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const firstField = React.useRef();
 
@@ -39,30 +40,56 @@ export function LoginSignupSlider() {
   const dispatch = useDispatch();
   const handleRegister = () => {
     console.log("ok");
-     if (name && email && password ) {
-
-      if(password.length<6){
-        alert("password should be more than 6 digits")
+    if (name && email && password) {
+      if (password.length < 6) {
+        toast({
+          title: 'password should be more than 6 digits',
+          status: "info",
+          duration: 3000,
+          isClosable: true,
+        });
+      } else if (password !== reenterPassword) {
+        toast({
+          title: "password didn't match!",
+          status: "info",
+          duration: 3000,
+          isClosable: true,
+        });
+      } else {
+        let payload = {
+          name: name,
+          email: email,
+          password: password,
+        };
+        dispatch(
+          registerAuthUser(payload,toast)
+        );
+        // onClose()
       }
-      else if( password!==reenterPassword){
-        alert("password didn't match")
-      }
-      else{
-      dispatch(
-        registerAuthUser({ name: name, email: email, password: password })
-      );
-      // onClose()
-      }
-    } 
-    else {
-      alert("Please fill all the fields");
+    } else {
+      toast({
+        title: 'Please fill all the fields',
+        status: "info",
+        duration: 3000,
+        isClosable: true,
+      });
     }
   };
+  const isAuth = useSelector((store) => store.auth.isAuth);
+  useEffect(() => {
+
+    if (isAuth) {
+      onClose();
+      // alert("Logged in Successfully")
+    } else {
+      // alert("Invalid user")
+    }
+  }, [isAuth, dispatch, onClose]);
   return (
     <div>
       {/* <Button leftIcon={<AddIcon />} colorScheme='teal' onClick={onOpen}> */}
       <Text onClick={onOpen} color="white" cursor="pointer">
-         Login / Signup
+        Login / Signup
       </Text>
       {/* </Button> */}
       <Drawer
@@ -134,7 +161,7 @@ export function LoginSignupSlider() {
                   py="12px"
                   color="#4f585e"
                 >
-                  Quick  Register
+                  Quick Register
                 </FormLabel>
                 <Stack spacing="20px">
                   <Input
@@ -166,8 +193,8 @@ export function LoginSignupSlider() {
                       setEmail(e.target.value);
                     }}
                   />
-                  
-                  <InputGroup h="2.8rem" >
+
+                  <InputGroup h="2.8rem">
                     <Input
                       h="2.8rem"
                       letterSpacing=".2px"
@@ -180,24 +207,24 @@ export function LoginSignupSlider() {
                         setPassword(e.target.value);
                       }}
                     />
-                    <InputRightElement width="4.5rem" >
+                    <InputRightElement width="4.5rem">
                       <Button h="2rem" size="sm" onClick={handleClick}>
                         {show ? "Hide" : "Show"}
                       </Button>
                     </InputRightElement>
                   </InputGroup>
                   <Input
-                      h="2.8rem"
-                      letterSpacing=".2px"
-                      outline=".1px solid black"
-                      focusBorderColor="none"
-                      type={ "password"}
-                      placeholder="Re-enter password"
-                      value={reenterPassword}
-                      onChange={(e) => {
-                        setReenterPassword(e.target.value);
-                      }}
-                    />
+                    h="2.8rem"
+                    letterSpacing=".2px"
+                    outline=".1px solid black"
+                    focusBorderColor="none"
+                    type={"password"}
+                    placeholder="Re-enter password"
+                    value={reenterPassword}
+                    onChange={(e) => {
+                      setReenterPassword(e.target.value);
+                    }}
+                  />
                 </Stack>
               </Box>
               {/* <Button
@@ -210,7 +237,7 @@ export function LoginSignupSlider() {
               >
                 Continue
               </Button> */}
-              <LoginSLider  handleRegister={handleRegister}/>
+              <LoginSLider handleRegister={handleRegister} />
             </Stack>
             <Text fontSize="12px" color="#4f585e" py="20px">
               By clicking continue, you agree with our{" "}

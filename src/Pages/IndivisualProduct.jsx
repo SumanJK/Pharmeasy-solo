@@ -10,6 +10,7 @@ import {
   IconButton,
   Image,
   Text,
+  useToast,
 } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { FaShareAlt } from "react-icons/fa";
@@ -36,7 +37,7 @@ const IndivisualProduct = () => {
    const {id}= useParams();
   //  console.log(id,"id")
    const dispatch = useDispatch();
- 
+ const toast= useToast()
  useEffect(() => {
      dispatch(getIndivisualProducts({id: id }))
  },[dispatch,id])
@@ -71,7 +72,7 @@ const IndivisualProduct = () => {
  const handleCart=(elemId)=>{
    setTimeout(()=>{
     
-      dispatch(addToCart(elemId))
+      dispatch(addToCart(elemId,toast))
    
  },800)
  }

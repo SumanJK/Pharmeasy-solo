@@ -12,6 +12,7 @@ import {
     IconButton,
     Text,
     Flex,
+    useToast,
   } from '@chakra-ui/react'
   import { RiDeleteBin6Line } from "react-icons/ri";
 import { useDispatch } from 'react-redux';
@@ -20,6 +21,7 @@ import { removeCartItems } from '../../Redux/Cart/action';
 
 export function RemoveModal({id,title}) {
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const toast= useToast()
   
     const initialRef = React.useRef(null)
     const finalRef = React.useRef(null)
@@ -29,7 +31,7 @@ export function RemoveModal({id,title}) {
     //! Remove from cart--------------------->
     const handleRemove = () => {
       setTimeout(()=>{
-        dispatch(removeCartItems(id));
+        dispatch(removeCartItems(id,toast));
     },200)
     };
 

@@ -38,7 +38,7 @@ export const postCartFailure=()=>{
     }
 }
 
-export const addToCart=(elemId)=>(dispatch, getState)=>{
+export const addToCart=(elemId,toast)=>(dispatch, getState)=>{
     dispatch(postCartRequest());
 const id= getState().auth.id
     axios({
@@ -47,9 +47,24 @@ const id= getState().auth.id
     }).then(res=>{
         console.log(res,"cart")
         dispatch(postCartSuccess())
+        toast({
+            title: 'Item got added to the cart',
+            status: "success",
+            duration: 5000,
+            isClosable: true,
+          });
+        
+    }).then(()=>{
         dispatch(getCartItems())
-    }).catch(err=>{
+    })
+    .catch(err=>{
         dispatch(postCartFailure())
+        toast({
+            title: "We couldn't add the item to the cart try again later",
+            status: "error",
+            duration: 5000,
+            isClosable: true,
+          });
     })
 }
 //GET Actions
@@ -104,7 +119,7 @@ export const removeCartFailure=()=> {
     }
 }
 
-export const removeCartItems=(id)=>(dispatch, getState)=>{
+export const removeCartItems=(id,toast)=>(dispatch, getState)=>{
     dispatch(removeCartRequest());
     const userid= getState().auth.id
     axios({
@@ -112,11 +127,22 @@ export const removeCartItems=(id)=>(dispatch, getState)=>{
         method: 'DELETE',
     }).then(res=>{
         dispatch(removeCartSuccess())
-        
+        toast({
+            title: 'Item got removed from the cart',
+            status: "success",
+            duration: 3000,
+            isClosable: true,
+          });
     }).then(()=>{
         dispatch(getCartItems(userid))
     }).catch(err=>{
         dispatch(removeCartFailure())
+        toast({
+            title: 'Try again later!',
+            status: "error",
+            duration: 3000,
+            isClosable: true,
+          });
     })
 }
 
