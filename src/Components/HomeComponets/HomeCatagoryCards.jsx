@@ -42,6 +42,7 @@ const HomeCatagoryCards = () => {
             />
           </Flex>
           <Flex align="center" h="40%" px="40px">
+          <Link to="/healthcare">
             <Button
               h="45px"
               w="135px"
@@ -54,7 +55,7 @@ const HomeCatagoryCards = () => {
               _hover={{ bg: "#43cfaa" }}
             >
               Order Now
-            </Button>
+            </Button></Link>
           </Flex>
         </Box>
         <Box

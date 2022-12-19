@@ -204,6 +204,7 @@ const isAuth=useSelector((store)=>store.auth.isAuth)
                     align="center"
                     fontSize="16px"
                   >
+                    <Link to="/healthcare">
                     <Text
                       transition="all .4s ease"
                       borderBottom="2px solid rgba(16, 132, 126, 0) "
@@ -213,7 +214,7 @@ const isAuth=useSelector((store)=>store.auth.isAuth)
                       }}
                     >
                       Order Medicines
-                    </Text>
+                    </Text></Link>
                     <Link to="/healthcare">
                       <Text
                         transition="all .4s ease"
