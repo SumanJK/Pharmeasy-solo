@@ -56,7 +56,7 @@ const error= useSelector((store)=>store.products.isError)
 
   const getProductsByPrice=(menu)=>{
     
-      axios.get(`https://pharmeasy-sumangiri.herokuapp.com/products/sort/${menu}`)
+      axios.get(`https://pharmeasybackend-production.up.railway.app/products/sort/${menu}`)
       .then((res) => {
         console.log(res.data,"ok data");
         setProducts(res.data);
@@ -83,7 +83,7 @@ const error= useSelector((store)=>store.products.isError)
  const getProductCompany=(company)=>{
 
     axios
-      .get(`https://pharmeasy-sumangiri.herokuapp.com/products//filter/company/${company}`)
+      .get(`https://pharmeasybackend-production.up.railway.app/products//filter/company/${company}`)
       .then((res) => {
         console.log("company",res.data);
         setProducts(res.data);

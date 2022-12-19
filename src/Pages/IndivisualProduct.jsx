@@ -336,7 +336,7 @@ const IndivisualProduct = () => {
                 fontWeight="700"
                 noOfLines={1}
                 height="30px"
-                firstWord="red"
+                // firstWord="red"
               >
                 {indivisualProduct?.desc}
               </Text>

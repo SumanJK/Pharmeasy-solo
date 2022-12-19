@@ -42,7 +42,7 @@ export const addToCart=(elemId,toast)=>(dispatch, getState)=>{
     dispatch(postCartRequest());
 const id= getState().auth.id
     axios({
-        url: `https://pharmeasy-sumangiri.herokuapp.com/cart/${id}/${elemId}`,
+        url: `https://pharmeasybackend-production.up.railway.app/cart/${id}/${elemId}`,
         method: 'GET',
     }).then(res=>{
         console.log(res,"cart")
@@ -90,7 +90,7 @@ export const getCartItems=()=>(dispatch, getState)=>{
     dispatch(getCartRequest());
     const id= getState().auth.id
     axios({
-        url: `https://pharmeasy-sumangiri.herokuapp.com/cart/product/products/${id}`,
+        url: `https://pharmeasybackend-production.up.railway.app/cart/product/products/${id}`,
         method: 'GET',
     }).then(res=>{
 console.log(res.data,"getcart")
@@ -123,7 +123,7 @@ export const removeCartItems=(id,toast)=>(dispatch, getState)=>{
     dispatch(removeCartRequest());
     const userid= getState().auth.id
     axios({
-        url: `https://pharmeasy-sumangiri.herokuapp.com/cart/cartitemdelete/${userid}/${id}`,
+        url: `https://pharmeasybackend-production.up.railway.app/cart/cartitemdelete/${userid}/${id}`,
         method: 'DELETE',
     }).then(res=>{
         dispatch(removeCartSuccess())

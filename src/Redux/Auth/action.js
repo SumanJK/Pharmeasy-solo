@@ -38,7 +38,7 @@ export const registerAuthUser= (userData,toast)=>(dispatch,getState)=>{
 
     dispatch(registerAuthRequest())
     axios({
-        url: 'https://pharmeasy-sumangiri.herokuapp.com/register', 
+        url: 'https://pharmeasybackend-production.up.railway.app/register', 
         method:"POST",
         data: userData
     }).then((res)=>{
@@ -82,7 +82,7 @@ export const loginAuthUser= (userData,toast)=>(dispatch,getState)=>{
 
     dispatch(loginAuthRequest())
     axios({
-        url: 'https://pharmeasy-sumangiri.herokuapp.com/login', 
+        url: 'https://pharmeasybackend-production.up.railway.app/login', 
         method:"POST",
         data: userData
     }).then((res)=>{

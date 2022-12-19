@@ -36,7 +36,7 @@ export const getProducts= () => (dispatch, getState) => {
     dispatch(getProductRequest());
 
     axios({
-        url: `https://pharmeasy-sumangiri.herokuapp.com/products`,
+        url: `https://pharmeasybackend-production.up.railway.app/products`,
         method: 'GET',
         params:{
 
@@ -75,7 +75,7 @@ export const getIndivisualProducts= ({id}) => (dispatch, getState) => {
     dispatch(getIndivisualProductRequest());
 
     axios({
-        url: `https://pharmeasy-sumangiri.herokuapp.com/products/${id}`,
+        url: `https://pharmeasybackend-production.up.railway.app/products/${id}`,
         method: 'GET',
         params:{
 

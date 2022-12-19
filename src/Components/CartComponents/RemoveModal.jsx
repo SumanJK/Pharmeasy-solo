@@ -67,7 +67,7 @@ export function RemoveModal({id,title}) {
 
             <ModalCloseButton />
             <ModalBody p={6} >
-              <Text w="90%" color="#4f585e" fontweight="700">Are you sure you want to remove <span style={{color:"#000000", fontWeight:"600"}}>{title}</span>  from your cart?</Text>
+              <Text w="90%" color="#4f585e" fontWeight="700">Are you sure you want to remove <span style={{color:"#000000", fontWeight:"600"}}>{title}</span>  from your cart?</Text>
             </ModalBody>
   
             <ModalFooter   p="0" h="3.5rem" border="2px solid #d5d7d8" borderBottomRadius="8px">
